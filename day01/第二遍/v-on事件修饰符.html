@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <a @click.prevent="fn" href="http://www.baidu.com">去百度</a>
+      <div @click="fatherFn">
+        <a @click.prevent.stop="fn2" href="http://www.baidu.com">去百度2</a>
+      </div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+        },
+        methods: {
+          fn() {
+            alert("嘿嘿!");
+          },
+          fn2() {
+            alert("我被点击了");
+          },
+          fatherFn() {
+            alert("我被执行了");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

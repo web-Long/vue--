@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="isShow = !isShow">控制h1的显示隐藏</button>
+      <button v-on:click="fn">指定methods中的fn函数控制显示隐藏</button>
+      <button v-on:click="fn1(100)">指定methods中的fn函数(带参数)</button>
+      <hr />
+      <button @click="isShow = !isShow">控制h1的显示隐藏</button>
+      <button @click="fn">指定methods中的fn函数控制显示隐藏</button>
+      <button @click="fn1(100)">指定methods中的fn函数(带参数)</button>
+      <hr />
+      <button @mouseenter="fn2(10)">注册鼠标移入事件</button>
+      <h1 v-show="isShow">h1的内容</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+          isShow: true,
+        },
+        methods: {
+          fn() {
+            // alert("嘿嘿");
+            this.isShow = !this.isShow;
+          },
+          fn1(num) {
+            console.log(num);
+          },
+          fn2(num) {
+            alert(num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
