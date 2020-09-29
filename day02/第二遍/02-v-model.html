@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ msg }}</p>
+      <input type="text" v-model="msg" value="12312" />
+      <hr />
+      <p>{{ desc }}</p>
+      <textarea v-model="desc"></textarea>
+      <hr />
+      <p>{{ hobbyId }}</p>
+      <select v-model="hobbyId">
+        <option value="1">吃饭</option>
+        <option value="2">睡觉</option>
+        <option value="3">打豆豆</option>
+      </select>
+      <hr />
+      <p>{{isDan}}</p>
+      <input type="checkbox" v-model="isDan" />
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+          desc: "嘿嘿",
+          hobbyId: 2,
+          isDan: false,
+        },
+      });
+    </script>
+  </body>
+</html>
