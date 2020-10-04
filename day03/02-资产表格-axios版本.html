@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .search {
+        width: 250px;
+        margin: 20px 0;
+      }
+      .search-btn {
+        position: absolute;
+        top: 20px;
+        left: 710px;
+      }
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="container">
+        <!-- 搜索 -->
+        <input
+          v-model.trim="key"
+          type="text"
+          class="form-control search"
+          placeholder="输入关键字进行搜索"
+        />
+        <!-- 搜索按钮 -->
+        <button @click="search" class="btn btn-primary search-btn">搜索</button>
+        <!-- 表格 -->
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>资产名称</th>
+              <th>资产价格</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in list" :key="item.id">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <td :class="{red: item.price >= 100 }">
+                {{ item.price | money}}
+              </td>
+              <td><a @click="del(item.id)" href="javascript:;">删除</a></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <td colspan="4">资产总价:{{ total |money }}元</td>
+          </tfoot>
+        </table>
+        <!-- 添加资产 -->
+        <form class="form-inline">
+          <input
+            v-model.trim="name"
+            type="text"
+            class="form-control"
+            placeholder="资产名称"
+          />
+          &nbsp;&nbsp;
+          <input
+            v-model.trim.number="price"
+            type="text"
+            class="form-control"
+            placeholder="资产价格"
+          />
+          &nbsp;&nbsp;
+          <button @click.prevent="add" class="btn btn-primary">添加资产</button>
+        </form>
+      </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script>
+      // 全局过滤器
+      Vue.filter("money", function (value) {
+        return "¥ " + value.toFixed(2);
+      });
+      // 全局自定义指令
+      Vue.directive("autofocus", {
+        inserted(el) {
+          el.focus();
+        },
+      });
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          list: [],
+          name: "",
+          price: 0,
+          key: "",
+        },
+        created() {
+          this.getList();
+        },
+        methods: {
+          getList() {
+            axios.get("http://localhost:3000/list").then((res) => {
+              //   console.log(res.data);
+              this.list = res.data;
+            });
+          },
+          del(id) {
+            axios.delete(`http://localhost:3000/list/${id}`).then((res) => {
+              //   console.log("删除成功!");
+              this.getList();
+            });
+          },
+          add() {
+            if (this.name === "") return;
+            if (this.price === 0 || this.price === "") return;
+            axios
+              .post(`http://localhost:3000/list`, {
+                name: this.name,
+                price: this.price,
+              })
+              .then((res) => {
+                this.getList();
+                this.price = 0;
+                this.name = "";
+              });
+          },
+          search() {
+            axios
+              .get(`http://localhost:3000/list?name_like=${this.key}`)
+              .then((res) => {
+                this.list = res.data;
+              });
+          },
+        },
+        computed: {
+          total() {
+            let totalPrice = 0;
+            this.list.forEach((item) => (totalPrice += item.price));
+            // console.log(totalPrice);
+            return totalPrice;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
