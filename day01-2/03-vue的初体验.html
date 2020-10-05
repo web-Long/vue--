@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ msg }}</h1>
+      <h1>{{ msg }}</h1>
+      <h1>{{ msg }}</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      /*
+         1.下载npm i vue 
+         2.引入
+         3.使用,也就是创建vue实例
+      */
+
+      // 只有引入vue,就能在全局创建一个Vue构造函数
+      const vm = new Vue({
+        // 指定视图 el: element 指定vue管理的视图范围.值是一个选择器
+        el: "#app",
+        // 指定数据
+        data: {
+          msg: "hello vue",
+        },
+      });
+    </script>
+  </body>
+</html>

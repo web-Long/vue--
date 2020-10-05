@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      vue中有着就地复用的策略:
+      当vue中数据对该了,会进行新旧DOM的对比(默认是按照元素的顺序,下标)
+      对比出辩护的部分,尽可能的复用之前的标签结构和内容,进行差异化更新,
+      这样的渲染性能非常高
+
+      1.没有key的情况,默认按照元素的下标,进行对比,必出差异化部分,这样默认是没问题的
+      2. 但是列表数据的,每一项的次序,都有可能变化,这是性能就不高了,要用key进行优化
+
+      key一般是唯一的标识id key必须是唯一的标识  只有设置了key 列表才不会按照下标渲染 而是key
+    -->
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-text="msg">这是内容</h1>
+      <h1 v-html="msg1">这是内容</h1>
+      <h1 v-text="msg1">这是内容</h1>
+    </div>
+    <!-- 
+      指令: 就是一些特殊的 html 标签属性
+      v-text 原理: 设置元素的 innerText 不识别标签
+      v-html 原理: 设置元素的 innerHTML 识别标签
+     -->
+
+    <script src="./vue.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+          msg1: '<a href="#">我是a标签的内容</a>',
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <a @click="fn1" href="http://www.baidu.com">去百度</a>
+      <a @click="fn2(100,$event)" href="http://www.baidu.com">去百度</a>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      /*
+         a标签点击后会跳转,但是不希望跳转.就可以阻止浏览器的默认行为
+         1.阻止默认行为 e.preventDefault()
+         2.阻止冒泡 e.stopPropagation()
+         都需要用到e 所以要获取事件对象
+
+         vue中获取事件对象
+         1. 注册事件没有传参 @事件名='fn' 直接通过形参获取
+         2. 注册事件了但是有传参, 就要通过$event来获取
+       */
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+        },
+        methods: {
+          fn1(e) {
+            e.preventDefault();
+          },
+          fn2(num, e) {
+            e.preventDefault();
+            console.log(num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

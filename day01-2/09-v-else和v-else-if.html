@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="isLogin">尊敬的超级VIP,你好!</h1>
+      <h1 v-else>你谁啊! 先去登录去!</h1>
+
+      <h1 v-if="age >= 80">80岁以上,打太极</h1>
+      <h1 v-else-if="age >= 50">50岁以上,跳广场舞</h1>
+      <h1 v-else>18岁以上,好好学习</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+          isLogin: false,
+          age: 20,
+        },
+      });
+    </script>
+  </body>
+</html>
