@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{ msg }}</div>
+
+    <script src="./vue.js"></script>
+    <script>
+      /* 
+         如果发送的请求比较简单,可以利用axios简写的语法
+         1. get和delete类似
+         axios.get(url).then(成功的函数)
+         axios.get(url,{
+            params:{...}
+         }).then(成功的函数) 
+
+         2.post和put和patch类似
+         axios.post(url,data).then(成功的函数)
+      */
+
+      // 测试
+      // 1.发送get请求,获取全部数据
+      axios.get("http://localhost:3000/list").then((res) => {
+        console.log(res.data);
+      });
+    </script>
+  </body>
+</html>

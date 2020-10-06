@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{ msg }}</div>
+
+    <script src="./vue.js"></script>
+    <script>
+      /* 
+         1.全局安装
+           npm i json-server -g
+
+         2.准备一个json文件,提供数据
+
+         3.利用命令,启动接口
+           json-server data.json
+
+         4.测试
+      */
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+        },
+      });
+    </script>
+  </body>
+</html>
