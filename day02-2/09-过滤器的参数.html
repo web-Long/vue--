@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ date1 | time('YYYY年')}}</h1>
+      <h1>{{ date1 | time('YYYY年MM月')}}</h1>
+      <h1>{{ date1 | time('YYYY年MM月DD日')}}</h1>
+      <h1>{{ date1 | time }}</h1>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script src="./moment.js"></script>
+    <script>
+      /* 
+       过滤器的参数:
+       其实过滤器使用时,可以传参
+       {{ msg | 过滤器名字 }}  不传参
+       {{ msg | 过滤器名字(额外参数1, 额外参数2, ... ) }} 传参
+
+       不管传不传参数,过滤器函数第一个参数,永远都是要处理的字符串
+      */
+
+      Vue.filter("time", function (value, str = "YYYY年MM月DD日 HH:mm:ss") {
+        return moment(value).format(str);
+      });
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+          date1: 1601348075835,
+          date2: 1201348075835,
+        },
+      });
+    </script>
+  </body>
+</html>

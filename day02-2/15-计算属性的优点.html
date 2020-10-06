@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{ msg }}</div>
+
+    <script src="./vue.js"></script>
+    <script>
+      /* 
+         模板中写了大量的逻辑,会导致模板过重,难以维护
+         如果一个结果,依赖于data中的数据,并且需要经过一定的计算,才能得到结果,那么推荐使用计算属性
+
+
+         计算属性: 
+         1. 写在computed中
+         2. 计算属性和 data相似,都是提供属性的
+         3. 计算属性写法上是一个函数,但是实质是一个属性
+            计算属性,是需要通过计算得到的属性,函数中就封装了计算的过程,结果就是返回值
+
+         计算属性的优点:
+         1.便于维护,将模板中复杂的逻辑,封装到计算属性中
+         2.计算属性有缓存,计算完成后,会将计算的结果缓存起来
+           如果再次获取同一个计算属性,那么就不需要重复计算了,直接读取缓存结果就可以了
+         3.如果依赖的值(也就是data中的数据改变了)发生变化了,计算属性会重新计算结果,并再次缓存
+      */
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello vue",
+        },
+      });
+    </script>
+  </body>
+</html>
